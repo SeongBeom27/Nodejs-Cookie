@@ -7,12 +7,15 @@ http.createServer(function(request, response) {
     if (request.headers.cookie != undefined) {
         cookies = cookie.parse(request.headers.cookie);
     }
-    console.log(cookies.yummy_cookie);
     // Max-Age는 쿠키가 얼마동안 살 것인가.
     response.writeHead(200, {
-        'Set-Cookie': ['yummy_cookie=choco',
+        'Set-Cookie': [
+            'yummy_cookie=choco',
             'tasty_cookie=strawberry',
-            `Permanent=cookies; Max-Age=${60*60*24*30}`
+            `Permanent=cookies; Max-Age=${60*60*24*30}`,
+            `Secure=Secure; Secure`,
+            `HttpOnly=HttpOnly; HttpOnly`,
+            'Domain=Domain; Domain=o2.org'
         ]
     });
     response.end('Cookie!!');
