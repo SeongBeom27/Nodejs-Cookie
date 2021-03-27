@@ -89,6 +89,10 @@ var app = http.createServer(function(request, response) {
             response.end(html);
         });
     } else if (pathname === '/create_process') {
+        if (authIsOwner(request, response) === false) {
+            response.end(`Login Required!!`);
+            return false;
+        }
         var body = '';
         request.on('data', function(data) {
             body = body + data;
@@ -129,6 +133,10 @@ var app = http.createServer(function(request, response) {
             });
         });
     } else if (pathname === '/update_process') {
+        if (authIsOwner(request, response) === false) {
+            response.end(`Login Required!!`);
+            return false;
+        }
         var body = '';
         request.on('data', function(data) {
             body = body + data;
@@ -146,6 +154,10 @@ var app = http.createServer(function(request, response) {
             });
         });
     } else if (pathname === '/delete_process') {
+        if (authIsOwner(request, response) === false) {
+            response.end(`Login Required!!`);
+            return false;
+        }
         var body = '';
         request.on('data', function(data) {
             body = body + data;
